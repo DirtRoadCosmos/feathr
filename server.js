@@ -1,5 +1,25 @@
 /*to do: ajust food spawning rate for food eating rate
 */
+
+console.log("starting server.js");
+var express = require('express');
+var socket = require('socket.io');
+var http = require('http');
+
+var app = express();
+var server = http.createServer(app);
+var io = socket.listen(server);
+
+var server_port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
+var server_ip_address = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+
+server.listen(server_port, server_ip_address, function () {
+ console.log( "Listening on " + server_ip_address + ", port " + server_port )
+});
+
+app.use(express.static('public'));
+console.log("my server is running");
+
 var blobs = [];
 var food = [];
 function Blob(id, x, y, r, t) {
@@ -11,23 +31,7 @@ function Blob(id, x, y, r, t) {
 }
 var width = 600;
 var height = 600;
-var express = require('express');
-var app = express();
-//var server = app.listen(3000);
-var server_port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
-var server_ip_address = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
-var server = app.listen(server_port, server_ip_address, function () {
- console.log( "Listening on " + server_ip_address + ", port " + server_port )
-});
-//var server = app.listen(process.env.OPENSHIFT_NODEJS_PORT, process.env.OPENSHIFT_NODEJS_IP);
-
-
-app.use(express.static('public'));
-console.log("my server is running, dude");
-
-var socket = require('socket.io');
-var io = socket(server);
 
 setInterval(heartbeat, 5000);
 setInterval(transmit_blobs, 50);

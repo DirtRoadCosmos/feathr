@@ -10,7 +10,7 @@ var attack = false;
 function setup() {
     createCanvas(600, 600);
     blob = new Blob(0, 0, 64, generateTeam());
-    socket = io.connect('http://localhost:3000');
+    socket = io.connect('https://feathr-route-feathr.7e14.starter-us-west-2.openshiftapps.com/');
     data = {
         x: blob.pos.x,
         y: blob.pos.y,

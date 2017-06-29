@@ -10,7 +10,7 @@ var attack = false;
 function setup() {
     createCanvas(600, 600);
     blob = new Blob(0, 0, 64, generateTeam());
-    socket = io.connect('http://localhost:8080');
+    socket = io.connect();
     data = {
         x: blob.pos.x,
         y: blob.pos.y,

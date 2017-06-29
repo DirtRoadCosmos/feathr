@@ -85,13 +85,15 @@ function newConnection(socket) {
 function addFood() {
   var n = 1;
   var prevFoodCount = food.length;
-  for (var i = prevFoodCount; i < prevFoodCount + n; i++) {
-    var x = Math.floor(Math.random() * width * 2) - width;
-    var y = Math.floor(Math.random() * width * 2) - height;
-    var size = Math.floor(Math.random() * 6) + 2;
-    var type = Math.floor(Math.random() * 2);
-    var id = generateUUID();
-    food[i] = new Food(x, y, size, type, id);
+  if (prevFoodCount < 200) {
+    for (var i = prevFoodCount; i < prevFoodCount + n; i++) {
+      var x = Math.floor(Math.random() * width * 2) - width;
+      var y = Math.floor(Math.random() * width * 2) - height;
+      var size = Math.floor(Math.random() * 6) + 2;
+      var type = Math.floor(Math.random() * 2);
+      var id = generateUUID();
+      food[i] = new Food(x, y, size, type, id);
+    }
   }
 }
 
